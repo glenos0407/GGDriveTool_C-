@@ -33,11 +33,15 @@
             this.pnlTitleBar = new System.Windows.Forms.Panel();
             this.lbTitleBar = new System.Windows.Forms.Label();
             this.btnMinized = new System.Windows.Forms.Button();
+            this.imgs_TreeView = new System.Windows.Forms.ImageList(this.components);
             this.btnExit = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.btnRefesh = new System.Windows.Forms.Button();
             this.btnSearch = new System.Windows.Forms.Button();
+            this.txtSearchFileorFolder = new System.Windows.Forms.TextBox();
             this.btnChangeUser = new System.Windows.Forms.Button();
             this.txtUser = new System.Windows.Forms.TextBox();
+            this.lbUserName = new System.Windows.Forms.Label();
             this.trvFolder = new System.Windows.Forms.TreeView();
             this.panel2 = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
@@ -55,16 +59,12 @@
             this.txtFileID_Down = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.panel4 = new System.Windows.Forms.Panel();
+            this.btnUploadPro = new System.Windows.Forms.Button();
             this.txtPathUpload = new System.Windows.Forms.TextBox();
             this.btnUpload = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.btnChoseFile = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
-            this.imgs_TreeView = new System.Windows.Forms.ImageList(this.components);
-            this.txtSearchFileorFolder = new System.Windows.Forms.TextBox();
-            this.btnRefesh = new System.Windows.Forms.Button();
-            this.lbUserName = new System.Windows.Forms.Label();
-            this.btnUploadPro = new System.Windows.Forms.Button();
             this.pnlTitleBar.SuspendLayout();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -115,6 +115,18 @@
             this.btnMinized.UseVisualStyleBackColor = false;
             this.btnMinized.Click += new System.EventHandler(this.btnMinized_Click);
             // 
+            // imgs_TreeView
+            // 
+            this.imgs_TreeView.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imgs_TreeView.ImageStream")));
+            this.imgs_TreeView.TransparentColor = System.Drawing.Color.Transparent;
+            this.imgs_TreeView.Images.SetKeyName(0, "file_ico.png");
+            this.imgs_TreeView.Images.SetKeyName(1, "folder_ico.png");
+            this.imgs_TreeView.Images.SetKeyName(2, "drive_ico.png");
+            this.imgs_TreeView.Images.SetKeyName(3, "search_ico.png");
+            this.imgs_TreeView.Images.SetKeyName(4, "reload_ico.png");
+            this.imgs_TreeView.Images.SetKeyName(5, "minus_ico.png");
+            this.imgs_TreeView.Images.SetKeyName(6, "X_ico.png");
+            // 
             // btnExit
             // 
             this.btnExit.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
@@ -149,6 +161,22 @@
             this.panel1.Size = new System.Drawing.Size(846, 23);
             this.panel1.TabIndex = 2;
             // 
+            // btnRefesh
+            // 
+            this.btnRefesh.Dock = System.Windows.Forms.DockStyle.Left;
+            this.btnRefesh.FlatAppearance.BorderSize = 0;
+            this.btnRefesh.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(35)))), ((int)(((byte)(35)))));
+            this.btnRefesh.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.btnRefesh.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnRefesh.ImageIndex = 4;
+            this.btnRefesh.ImageList = this.imgs_TreeView;
+            this.btnRefesh.Location = new System.Drawing.Point(255, 0);
+            this.btnRefesh.Name = "btnRefesh";
+            this.btnRefesh.Size = new System.Drawing.Size(41, 23);
+            this.btnRefesh.TabIndex = 10;
+            this.btnRefesh.UseVisualStyleBackColor = true;
+            this.btnRefesh.Click += new System.EventHandler(this.btnCapNhatDrive_Click);
+            // 
             // btnSearch
             // 
             this.btnSearch.BackColor = System.Drawing.Color.Teal;
@@ -167,6 +195,21 @@
             this.btnSearch.UseVisualStyleBackColor = false;
             this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
             // 
+            // txtSearchFileorFolder
+            // 
+            this.txtSearchFileorFolder.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(35)))), ((int)(((byte)(35)))));
+            this.txtSearchFileorFolder.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtSearchFileorFolder.Dock = System.Windows.Forms.DockStyle.Left;
+            this.txtSearchFileorFolder.ForeColor = System.Drawing.Color.Gray;
+            this.txtSearchFileorFolder.Location = new System.Drawing.Point(0, 0);
+            this.txtSearchFileorFolder.Name = "txtSearchFileorFolder";
+            this.txtSearchFileorFolder.Size = new System.Drawing.Size(211, 23);
+            this.txtSearchFileorFolder.TabIndex = 9;
+            this.txtSearchFileorFolder.Text = "Nhập Tên File";
+            this.txtSearchFileorFolder.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txtSearchFileorFolder.Enter += new System.EventHandler(this.txtSearchFileorFolder_Enter);
+            this.txtSearchFileorFolder.Leave += new System.EventHandler(this.txtSearchFileorFolder_Leave);
+            // 
             // btnChangeUser
             // 
             this.btnChangeUser.BackColor = System.Drawing.Color.Teal;
@@ -183,6 +226,7 @@
             this.btnChangeUser.TabIndex = 8;
             this.btnChangeUser.Text = "Change";
             this.btnChangeUser.UseVisualStyleBackColor = false;
+            this.btnChangeUser.Click += new System.EventHandler(this.btnChangeUser_Click);
             // 
             // txtUser
             // 
@@ -198,6 +242,19 @@
             this.txtUser.Size = new System.Drawing.Size(212, 23);
             this.txtUser.TabIndex = 7;
             this.txtUser.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // lbUserName
+            // 
+            this.lbUserName.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.lbUserName.AutoSize = true;
+            this.lbUserName.ForeColor = System.Drawing.Color.White;
+            this.lbUserName.Location = new System.Drawing.Point(490, 4);
+            this.lbUserName.Margin = new System.Windows.Forms.Padding(3, 0, 0, 0);
+            this.lbUserName.Name = "lbUserName";
+            this.lbUserName.Size = new System.Drawing.Size(70, 15);
+            this.lbUserName.TabIndex = 6;
+            this.lbUserName.Text = "User Name";
             // 
             // trvFolder
             // 
@@ -366,6 +423,7 @@
             this.btnDownload.TabIndex = 4;
             this.btnDownload.Text = "Download";
             this.btnDownload.UseVisualStyleBackColor = false;
+            this.btnDownload.Click += new System.EventHandler(this.btnDownload_Click);
             // 
             // label5
             // 
@@ -415,6 +473,22 @@
             this.panel4.Name = "panel4";
             this.panel4.Size = new System.Drawing.Size(548, 110);
             this.panel4.TabIndex = 6;
+            // 
+            // btnUploadPro
+            // 
+            this.btnUploadPro.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnUploadPro.BackColor = System.Drawing.Color.Transparent;
+            this.btnUploadPro.FlatAppearance.BorderSize = 0;
+            this.btnUploadPro.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.btnUploadPro.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnUploadPro.Location = new System.Drawing.Point(275, 75);
+            this.btnUploadPro.Margin = new System.Windows.Forms.Padding(0);
+            this.btnUploadPro.Name = "btnUploadPro";
+            this.btnUploadPro.Size = new System.Drawing.Size(140, 29);
+            this.btnUploadPro.TabIndex = 6;
+            this.btnUploadPro.Text = "Upload Nâng Cao";
+            this.btnUploadPro.UseVisualStyleBackColor = false;
+            this.btnUploadPro.Click += new System.EventHandler(this.btnUploadPro_Click);
             // 
             // txtPathUpload
             // 
@@ -483,78 +557,6 @@
             this.label2.Size = new System.Drawing.Size(70, 15);
             this.label2.TabIndex = 1;
             this.label2.Text = "Đường Dẫn";
-            // 
-            // imgs_TreeView
-            // 
-            this.imgs_TreeView.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imgs_TreeView.ImageStream")));
-            this.imgs_TreeView.TransparentColor = System.Drawing.Color.Transparent;
-            this.imgs_TreeView.Images.SetKeyName(0, "file_ico.png");
-            this.imgs_TreeView.Images.SetKeyName(1, "folder_ico.png");
-            this.imgs_TreeView.Images.SetKeyName(2, "drive_ico.png");
-            this.imgs_TreeView.Images.SetKeyName(3, "search_ico.png");
-            this.imgs_TreeView.Images.SetKeyName(4, "reload_ico.png");
-            this.imgs_TreeView.Images.SetKeyName(5, "minus_ico.png");
-            this.imgs_TreeView.Images.SetKeyName(6, "X_ico.png");
-            // 
-            // txtSearchFileorFolder
-            // 
-            this.txtSearchFileorFolder.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(35)))), ((int)(((byte)(35)))));
-            this.txtSearchFileorFolder.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtSearchFileorFolder.Dock = System.Windows.Forms.DockStyle.Left;
-            this.txtSearchFileorFolder.ForeColor = System.Drawing.Color.Gray;
-            this.txtSearchFileorFolder.Location = new System.Drawing.Point(0, 0);
-            this.txtSearchFileorFolder.Name = "txtSearchFileorFolder";
-            this.txtSearchFileorFolder.Size = new System.Drawing.Size(211, 23);
-            this.txtSearchFileorFolder.TabIndex = 9;
-            this.txtSearchFileorFolder.Text = "Nhập Tên File";
-            this.txtSearchFileorFolder.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.txtSearchFileorFolder.Enter += new System.EventHandler(this.txtSearchFileorFolder_Enter);
-            this.txtSearchFileorFolder.Leave += new System.EventHandler(this.txtSearchFileorFolder_Leave);
-            // 
-            // btnRefesh
-            // 
-            this.btnRefesh.Dock = System.Windows.Forms.DockStyle.Left;
-            this.btnRefesh.FlatAppearance.BorderSize = 0;
-            this.btnRefesh.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(35)))), ((int)(((byte)(35)))));
-            this.btnRefesh.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.btnRefesh.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnRefesh.ImageIndex = 4;
-            this.btnRefesh.ImageList = this.imgs_TreeView;
-            this.btnRefesh.Location = new System.Drawing.Point(255, 0);
-            this.btnRefesh.Name = "btnRefesh";
-            this.btnRefesh.Size = new System.Drawing.Size(41, 23);
-            this.btnRefesh.TabIndex = 10;
-            this.btnRefesh.UseVisualStyleBackColor = true;
-            this.btnRefesh.Click += new System.EventHandler(this.btnCapNhatDrive_Click);
-            // 
-            // lbUserName
-            // 
-            this.lbUserName.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.lbUserName.AutoSize = true;
-            this.lbUserName.ForeColor = System.Drawing.Color.White;
-            this.lbUserName.Location = new System.Drawing.Point(490, 4);
-            this.lbUserName.Margin = new System.Windows.Forms.Padding(3, 0, 0, 0);
-            this.lbUserName.Name = "lbUserName";
-            this.lbUserName.Size = new System.Drawing.Size(70, 15);
-            this.lbUserName.TabIndex = 6;
-            this.lbUserName.Text = "User Name";
-            // 
-            // btnUploadPro
-            // 
-            this.btnUploadPro.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnUploadPro.BackColor = System.Drawing.Color.Transparent;
-            this.btnUploadPro.FlatAppearance.BorderSize = 0;
-            this.btnUploadPro.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.btnUploadPro.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnUploadPro.Location = new System.Drawing.Point(275, 75);
-            this.btnUploadPro.Margin = new System.Windows.Forms.Padding(0);
-            this.btnUploadPro.Name = "btnUploadPro";
-            this.btnUploadPro.Size = new System.Drawing.Size(140, 29);
-            this.btnUploadPro.TabIndex = 6;
-            this.btnUploadPro.Text = "Upload Nâng Cao";
-            this.btnUploadPro.UseVisualStyleBackColor = false;
-            this.btnUploadPro.Click += new System.EventHandler(this.btnUploadPro_Click);
             // 
             // frmMain
             // 

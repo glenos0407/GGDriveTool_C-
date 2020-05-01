@@ -73,6 +73,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="api\GoogleDriveAPI.cs" />
+    <Compile Include="frmControlDownload.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmControlDownload.Designer.cs">
+      <DependentUpon>frmControlDownload.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmMain.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -99,6 +105,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="frmControlDownload.resx">
+      <DependentUpon>frmControlDownload.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmMain.resx">
       <DependentUpon>frmMain.cs</DependentUpon>
     </EmbeddedResource>
@@ -137,6 +146,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="credential\list_nameToken.xml" />
+    <Content Include="credential\nameToken_cur.xml" />
     <Content Include="icon\drive_ico.png" />
     <Content Include="icon\file_ico.png" />
     <Content Include="icon\folder_ico.png" />

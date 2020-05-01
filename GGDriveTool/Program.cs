@@ -16,8 +16,8 @@ namespace GGDriveTool
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            //Application.Run(new frmMain("1.0","token"));
-            Application.Run(new frmToken("1.0"));
+            Application.Run(new frmMain("1.0","token"));
+            //Application.Run(new frmToken("1.0"));
             //Application.Run(new frmWaiting());
         }
     }

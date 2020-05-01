@@ -58,3 +58,4 @@ W:\GGDriveTool\GGDriveTool\GGDriveTool\obj\Debug\GGDriveTool.exe
 W:\GGDriveTool\GGDriveTool\GGDriveTool\obj\Debug\GGDriveTool.pdb
 W:\GGDriveTool\GGDriveTool\GGDriveTool\obj\Debug\GGDriveTool.frmUploadPro.resources
 W:\GGDriveTool\GGDriveTool\GGDriveTool\obj\Debug\GGDriveTool.frmToken.resources
+W:\GGDriveTool\GGDriveTool\GGDriveTool\obj\Debug\GGDriveTool.frmControlDownload.resources

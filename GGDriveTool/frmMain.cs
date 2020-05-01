@@ -106,7 +106,7 @@ namespace GGDriveTool
             {
 
                 trvFolder.Nodes.Clear();
-          
+
                 load_folders();
 
                 Thread th = new Thread(new ThreadStart(load_files));
@@ -228,8 +228,10 @@ namespace GGDriveTool
             Thread thread_lazy = new Thread(new ThreadStart(Open_WaitingFrm));
             thread_lazy.Start();
 
-            Thread thread_load = new Thread(() => {
-                Action action = () => {
+            Thread thread_load = new Thread(() =>
+            {
+                Action action = () =>
+                {
                     load_TreeView();
                     Thread.Sleep(1000);
                     frmWait.Invoke(new MethodInvoker(delegate ()
@@ -253,20 +255,20 @@ namespace GGDriveTool
         //Set isSearch = true
         private void txtSearchFileorFolder_Enter(object sender, EventArgs e)
         {
-           if (txtSearchFileorFolder.Text == "Nhập Tên File")
-           {
+            if (txtSearchFileorFolder.Text == "Nhập Tên File")
+            {
                 txtSearchFileorFolder.Clear();
                 txtSearchFileorFolder.ForeColor = Color.White;
 
                 return;
-           }
+            }
         }
 
         //Leave O Tim Kiem
         //Set isSearch = true
         private void txtSearchFileorFolder_Leave(object sender, EventArgs e)
         {
-            if(txtSearchFileorFolder.Text.Trim() == "")
+            if (txtSearchFileorFolder.Text.Trim() == "")
             {
                 txtSearchFileorFolder.Text = "Nhập Tên File";
                 txtSearchFileorFolder.ForeColor = Color.Gray;
@@ -315,8 +317,10 @@ namespace GGDriveTool
             Thread thread_lazy = new Thread(new ThreadStart(Open_WaitingFrm));
             thread_lazy.Start();
 
-            Thread thread_load = new Thread(() => {
-                Action action = () => {
+            Thread thread_load = new Thread(() =>
+            {
+                Action action = () =>
+                {
                     load_search_treeView(txtSearchFileorFolder.Text);
                     Thread.Sleep(1000);
                     frmWait.Invoke(new MethodInvoker(delegate ()
@@ -334,6 +338,40 @@ namespace GGDriveTool
         {
             frmUploadPro fUploadPro = new frmUploadPro();
             fUploadPro.ShowDialog();
+        }
+
+
+        private void open_frmToken()
+        {
+            Application.Run(new frmToken("1.0"));
+        }
+
+
+        private void btnChangeUser_Click(object sender, EventArgs e)
+        {
+            //this.Close();
+        }
+
+        private void btnDownload_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (trvFolder.SelectedNode.Level > 0)
+                {
+                    frmControlDownload fcdown = new frmControlDownload(txtFileID_Down.Text.Trim(), name_token);
+                    fcdown.ShowDialog();
+                }
+                else
+                {
+                    MessageBox.Show("NHẬP ID ĐỂ TẢI", "NULL ID", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+            }
+            catch(NullReferenceException)
+            {
+                MessageBox.Show("NHẬP ID ĐỂ TẢI", "NULL ID", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
         }
     }
 }

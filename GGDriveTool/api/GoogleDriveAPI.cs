@@ -85,5 +85,51 @@ namespace GGDriveTool.api
                 request.Upload();
             }
         }
+
+        public int DownloadGoogleFile(string fileID, string fileSavePath, string name_token)
+        {
+            int result = -1;
+
+            FilesResource.GetRequest getRequest = Get_Google_Drive_Service(name_token).Files.Get(fileID);
+            string FileName = getRequest.Execute().Name;
+            string FilePath = System.IO.Path.Combine(fileSavePath, FileName);
+
+            MemoryStream memoryStream = new MemoryStream();
+
+            getRequest.MediaDownloader.ProgressChanged += (Google.Apis.Download.IDownloadProgress progress) =>
+            {
+                switch (progress.Status)
+                {
+                    case DownloadStatus.Downloading:
+                        {
+                            break;
+                        }
+                    case DownloadStatus.Completed:
+                        {
+                            using (System.IO.FileStream file = new FileStream(FilePath, FileMode.Create, FileAccess.ReadWrite))
+                            {
+                                memoryStream.WriteTo(file);
+                            }
+
+                            result = 1;
+                            break;
+                        }
+                    case DownloadStatus.Failed:
+                        {
+                            result = 0;
+                            break;
+                        }
+                }
+            };
+
+            getRequest.Download(memoryStream);
+            return result;
+        }
+
+        public string getFileName_ID(string fileID, string name_token)
+        {
+            FilesResource.GetRequest getRequest = Get_Google_Drive_Service(name_token).Files.Get(fileID);
+            return getRequest.Execute().Name;
+        }
     }
 }
